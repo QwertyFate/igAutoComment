@@ -20,13 +20,13 @@ def home():
 @app.route("/registerig", methods=["POST"])
 def loginIG():
     cl.login(igEmail, igPW)
-    cl.dump_settings("session.json")
+    cl.dump_settings("apps/session.json")
 
 @app.route("/comment", methods=["POST"])
 def comment():
     data = request.get_json()
     cl = Client()
-    cl.load_settings("session.json")
+    cl.load_settings("apps/session.json")
     cl.login (data["igEmail"], data["igPW"]) # this doesn't actually login using username/password but uses the session
     cl.get_timeline_feed()
     media_id = cl.media_id(cl.media_pk_from_url(data["instagramURL"]))
