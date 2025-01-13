@@ -12,6 +12,11 @@ igPW = os.getenv("PASSWORD")
 cl = Client()   
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    print("hello world")
+    return("hello world")
+
 @app.route("/registerig", methods=["POST"])
 def loginIG():
     cl.login(igEmail, igPW)
