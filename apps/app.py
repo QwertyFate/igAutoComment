@@ -28,7 +28,8 @@ def loginIG():
 def comment():
     data = request.get_json()
     cl = Client()
-    cl.load_settings(f"apps/{listofsession[data["igEmail"]]}")
+    sessionSet = listofsession[data["igEmail"]]
+    cl.load_settings(f"apps/{sessionSet}")
     cl.login (data["igEmail"], data["igPW"]) # this doesn't actually login using username/password but uses the session
     cl.get_timeline_feed()
     media_id = cl.media_id(cl.media_pk_from_url(data["instagramURL"]))
